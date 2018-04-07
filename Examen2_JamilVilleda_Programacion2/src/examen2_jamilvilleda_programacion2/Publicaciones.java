@@ -5,21 +5,22 @@
  */
 package examen2_jamilvilleda_programacion2;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Jamil
  */
-public class Publicaciones {
+public class Publicaciones implements Serializable{
     
-    private int ID;
+    private String ID;
     private String mensaje;
     private Usuarios user;
     private String privacidad;
     private Date fecha;
 
-    public Publicaciones(int ID, String mensaje, Usuarios user, String privacidad, Date fecha) {
+    public Publicaciones(String ID, String mensaje, Usuarios user, String privacidad, Date fecha) {
         this.ID = ID;
         this.mensaje = mensaje;
         this.user = user;
@@ -27,11 +28,11 @@ public class Publicaciones {
         this.fecha = fecha;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

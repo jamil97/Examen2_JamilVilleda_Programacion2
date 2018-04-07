@@ -6,26 +6,28 @@
 package examen2_jamilvilleda_programacion2;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Jamil
  */
-public class Respuestas {
+public class Respuestas extends Publicaciones{
 
-    private ArrayList<Integer> calificaciones = new ArrayList();
+    private ArrayList calificaciones = new ArrayList();
     private int calificacionGeneral;
-    private ArrayList<Comentarios> comentarios = new ArrayList();
+    private ArrayList comentarios = new ArrayList();
 
-    public Respuestas(int calificacionGeneral) {
-        this.calificacionGeneral = calificacionGeneral;
+   public Respuestas(int calificacion_general, String ID, String mensaje, Usuarios user, String privacidad, Date fecha) {
+        super(ID, mensaje, user, privacidad, fecha);
+        this.calificacionGeneral = calificacion_general;
     }
 
-    public ArrayList<Integer> getCalificaciones() {
+    public ArrayList getCalificaciones() {
         return calificaciones;
     }
 
-    public void setCalificaciones(ArrayList<Integer> calificaciones) {
+    public void setCalificaciones(ArrayList calificaciones) {
         this.calificaciones = calificaciones;
     }
 
@@ -37,12 +39,17 @@ public class Respuestas {
         this.calificacionGeneral = calificacionGeneral;
     }
 
-    public ArrayList<Comentarios> getComentarios() {
+    public ArrayList getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(ArrayList<Comentarios> comentarios) {
+    public void setComentarios(ArrayList comentarios) {
         this.comentarios = comentarios;
     }
+   
+   
+
+    
+    
 
 }

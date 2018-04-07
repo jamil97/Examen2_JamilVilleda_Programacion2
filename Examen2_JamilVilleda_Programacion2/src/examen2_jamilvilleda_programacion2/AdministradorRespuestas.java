@@ -17,21 +17,22 @@ import java.util.ArrayList;
  *
  * @author Jamil
  */
-public class AdministradorUsuarioNormal {
+public class AdministradorRespuestas {
 
-    ArrayList<UsuarioNormal> usuarioNormal = new ArrayList();
-    File archivo = null;
+    private ArrayList<Respuestas> listas_respuestas = new ArrayList();
+    private File archivo = null;
 
-    public AdministradorUsuarioNormal(String path) {
+    public AdministradorRespuestas(String path) {
         archivo = new File(path);
-    }
-    
-    public ArrayList<UsuarioNormal> getUsuarioNormal() {
-        return usuarioNormal;
+
     }
 
-    public void setUsuarioNormal(ArrayList<UsuarioNormal> usuarioNormal) {
-        this.usuarioNormal = usuarioNormal;
+    public ArrayList<Respuestas> getListas_respuestas() {
+        return listas_respuestas;
+    }
+
+    public void setListas_respuestas(ArrayList<Respuestas> listas_respuestas) {
+        this.listas_respuestas = listas_respuestas;
     }
 
     public File getArchivo() {
@@ -42,26 +43,24 @@ public class AdministradorUsuarioNormal {
         this.archivo = archivo;
     }
 
-    public void setUsuarioNormal(UsuarioNormal um) {
-        this.usuarioNormal.add(um);
+    public void set_respuestas(Respuestas a) {
+        listas_respuestas.add(a);
     }
 
     public void cargarArchivo() {
-
         try {
-            usuarioNormal = new ArrayList();
-            UsuarioNormal user;
-
+            listas_respuestas = new ArrayList();
+            Respuestas temp;
             if (archivo.exists()) {
-
-                FileInputStream entrada = new FileInputStream(archivo);
+                FileInputStream entrada
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                    while ((user = (UsuarioNormal) objeto.readObject()) != null) {
-                        usuarioNormal.add(user);
+                    while ((temp = (Respuestas) objeto.readObject()) != null) {
+                        listas_respuestas.add(temp);
                     }
                 } catch (EOFException e) {
-
+                    //ENCONTRO EL FINAL DEL ARCHIVO
                 }
                 objeto.close();
                 entrada.close();
@@ -71,26 +70,28 @@ public class AdministradorUsuarioNormal {
         }
     }
 
-    public void escrbirArchivo() {
+    public void escribirArchivo() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
 
         try {
+
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (UsuarioNormal um : usuarioNormal) {
-                bw.writeObject(um);
+            for (Respuestas t : listas_respuestas) {
+                bw.writeObject(t);
+
             }
             bw.flush();
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
         } finally {
             try {
                 bw.close();
                 fw.close();
-            } catch (Exception ex) {
-
+            } catch (Exception e) {
             }
         }
     }
+
 }
